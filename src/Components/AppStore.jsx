@@ -1,7 +1,14 @@
 import React from 'react';
 import './style.css'; // Import the external CSS file
+import { useState } from 'react';
+import UploadPage from './UploadPage';
 
 const AppStore = () => {
+  const [showComponent, setShowComponent] = useState(false);
+
+  const handleKBClick = () => {
+    setShowComponent(true);
+  };
   return (
     <div>
     <header className="header header-md">
@@ -28,22 +35,25 @@ const AppStore = () => {
       </div>
     </header>
     <main className="main main-md">
+    {showComponent ? (
+          <UploadPage />
+        ) : (<div>
       <h1 className="main-title main-title-sm main-title-md">
         All Your Apps in One Place
       </h1>
-      <p className="main-subtitle main-subtitle-md">
+      <div className="main-subtitle main-subtitle-md">
         Discover and manage all your business applications in one centralized platform.
-      </p>
+      </div>
       <div className="main-cards main-cards-sm main-cards-lg">
         <Card className="card">
-          <div className="card-content">
+          <div className="card-content" onClick={handleKBClick}>
             <div className="card-primary">
               <LayoutGridIcon className="h-6 w-6" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold">Grid Manager</h3>
+              <h3 className="text-xl font-semibold">KB</h3>
               <p className="text-muted-foreground">
-                Easily manage and customize your grid layouts.
+                Easily analyze and customize articles.
               </p>
             </div>
           </div>
@@ -67,14 +77,14 @@ const AppStore = () => {
               <BriefcaseIcon className="h-6 w-6" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-[#62D84E]">Project Manager</h3>
+              <h3 className="card text-xl font-semibold">Project Manager</h3>
               <p className="text-black">
                 Manage your projects and teams with ease.
               </p>
             </div>
           </div>
         </Card>
-      </div>
+      </div></div>)}
     </main>
     <footer className="footer">
       <div className="footer-container">
